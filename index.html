@@ -611,11 +611,22 @@ function enterSite() {
      2. Uncomment the PRODUCTION block
 ───────────────────────────────────────────── */
 function startCountdown() {
-
+  
+let secs = 5;
+function tick() {
+  const h = Math.floor(secs/3600), m = Math.floor((secs%3600)/60), s = secs%60;
+  document.getElementById('th').textContent = String(h).padStart(2,'0');
+  document.getElementById('tm').textContent = String(m).padStart(2,'0');
+  document.getElementById('ts').textContent = String(s).padStart(2,'0');
+  if (secs <= 0) { reveal(); return; }
+  secs--;
+  setTimeout(tick, 1000);
+}
+tick();
  
   // ─────────────────────────────────────────
 
-  
+  /*
   function tick() {
     const now = new Date(), target = new Date();
     target.setHours(23,59,0,0);
@@ -630,7 +641,7 @@ function startCountdown() {
     setTimeout(tick, 1000);
   }
   tick();
-  
+  */
 }
 
 /* ── reveal ── */
